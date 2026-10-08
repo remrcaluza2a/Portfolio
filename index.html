@@ -1,1 +1,496 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-600: #666666;
+}
+body {
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.7;
+}
+h1, h2, h3 {
+    color: var(--black);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+h2 {
+    border-bottom: 2px solid var(--black);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    position: relative;
+}
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: var(--black);
+}
+header {
+    border-bottom: 1px solid var(--gray-200);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+}
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+}
+.brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.nav-menu a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--black);
+    transition: width 0.3s ease;
+}
+.nav-menu a:hover::after {
+    width: 100%;
+}
+section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 5%;
+}
+#home {
+    padding-top: 10rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.home-content {
+    max-width: 700px;
+}
+.avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--black);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+.avatar:hover {
+    transform: scale(1.02);
+}
+.tagline {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.intro {
+    font-size: 1rem;
+    color: var(--gray-600);
+    max-width: 550px;
+    margin: 0 auto 2rem;
+}
+.btn {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    background: transparent;
+    color: var(--black);
+}
+.about-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.about-item {
+    padding: 1.5rem;
+    border: 1px solid var(--gray-200);
+    transition: border-color 0.3s ease;
+}
+.about-item:hover {
+    border-color: var(--black);
+}
+.about-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.skill-card {
+    border: 1px solid var(--gray-200);
+    padding: 1.8rem;
+    transition: all 0.3s ease;
+}
+.skill-card:hover {
+    border-color: var(--black);
+    background: var(--gray-100);
+    transform: translateY(-4px);
+}
+.skill-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.project-card {
+    border: 1px solid var(--gray-200);
+    padding: 1.8rem;
+    transition: all 0.3s ease;
+}
+.project-card:hover {
+    border-color: var(--black);
+    box-shadow: 6px 6px 0 var(--black);
+    transform: translate(-4px, -4px);
+}
+.project-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+.contact-info {
+    margin: 1.5rem 0 2rem;
+}
+.contact-info p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.contact-info a {
+    color: var(--black);
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+.contact-info a:hover {
+    opacity: 0.6;
+}
+form {
+    max-width: 550px;
+    margin-top: 1rem;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+input, textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--black);
+}
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+#form-status {
+    margin-top: 1rem;
+    font-weight: 500;
+}
+footer {
+    border-top: 1px solid var(--gray-200);
+    text-align: center;
+    padding: 2rem 5%;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin-top: 2rem;
+}
+#back-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 46px;
+    height: 46px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: none;
+    transition: all 0.3s ease;
+}
+#back-top-btn:hover {
+    background: var(--gray-600);
+}
+@media (max-width: 768px) {
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
+    .avatar {
+        width: 140px;
+        height: 140px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="brand">My Portfolio</div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home">
+    <div class="home-content">
+        <img src="images/img.jpg" alt="Profile Photo" class="avatar">
+        <h1>Remiellene R. Caluza</h1>
+        <p class="tagline">Student • Network Specialist • Developer</p>
+        <p class="intro">I build clean, functional websites and reliable network solutions. Passionate about learning, solving problems, and creating.</p>
+        <a href="#projects" class="btn">View My Work</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="about-grid">
+        <div class="about-item">
+            <h3>🎓 Education</h3>
+            <p>NUEVA VIZCAYA STATE UNIVERSITY (BAMBANG CAMPUS)</p>
+            <p>Bachelor of Science in Information Technology</p>
+        </div>
+        <div class="about-item">
+            <h3>📝 Biography</h3>
+            <p>I am a networking student passionate about building a foundation for continuous learning and programming. I enjoy solving problems and building things that work well and look clean.</p>
+        </div>
+        <div class="about-item">
+            <h3>🎯 Career Goals</h3>
+            <p>To become a skilled network specialist — designing, installing, maintaining, and securing organizations' computer networks.</p>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <span class="skill-icon">🌐</span>
+            <h3>HTML & CSS</h3>
+            <p>Building and styling responsive web pages</p>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">⚡</span>
+            <h3>JavaScript</h3>
+            <p>Adding interactivity and dynamic behavior</p>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">☕</span>
+            <h3>Java</h3>
+            <p>Object-oriented programming fundamentals</p>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">🔗</span>
+            <h3>Networking</h3>
+            <p>Cisco, LAN/WAN, IP Addressing</p>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">🛠️</span>
+            <h3>Tools</h3>
+            <p>VS Code, Git, GitHub</p>
+        </div>
+        <div class="skill-card">
+            <span class="skill-icon">🤝</span>
+            <h3>Soft Skills</h3>
+            <p>Problem Solving, Teamwork, Communication</p>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>My Projects</h2>
+    <div id="projects-container" class="projects-grid"></div>
+    <h2 style="margin-top: 4rem;">GitHub Repositories</h2>
+    <div id="github-repos"></div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-info">
+        <p>📧 Email: <a href="mailto:your.email@example.com">remiellenecaluza182email@.com</a></p>
+        <p>🔗 GitHub: <a href="https://github.com/y" target="_blank">github.com/remrcaluza2a</a></p>
+    </div>
+    <form id="contact-form">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="your.email@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+        <p id="form-status"></p>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2026 Remiellene R. Caluza. All rights reserved.</p>
+</footer>
+
+<button id="back-top-btn">↑</button>
+
+<script>
+const projects = [
+    { title: "Personal Portfolio", description: "A clean, responsive portfolio website built with HTML, CSS, and JavaScript.", technologies: "HTML, CSS, JavaScript", role: "Designed and developed the page" },
+    { title: "Calculator", description: "Calculates addition, subtraction, multiplication and division instantly.", technologies: "HTML, JavaScript", role: "Created the calculation logic and interface" },
+    { title: "Digital Clock", description: "Displays current time and date in real-time.", technologies: "HTML, CSS, JavaScript", role: "Built the live time feature" }
+];
+
+function displayProjects() {
+    const container = document.getElementById('projects-container');
+    container.innerHTML = '';
+    projects.forEach(p => {
+        container.innerHTML += `
+            <div class="project-card">
+                <h3>${p.title}</h3>
+                <p>${p.description}</p>
+                <p><strong>Technologies:</strong> ${p.technologies}</p>
+                <p><strong>Role:</strong> ${p.role}</p>
+            </div>
+        `;
+    });
+}
+
+async function fetchGitHubRepos() {
+    const username = 'yourusername';
+    try {
+        const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
+        if (!res.ok) throw new Error();
+        const repos = await res.json();
+        const container = document.getElementById('github-repos');
+        container.innerHTML = '';
+        repos.forEach(r => {
+            container.innerHTML += `<p style="margin-bottom: 0.5rem;">📂 <a href="${r.html_url}" target="_blank">${r.name}</a> — ${r.language || '—'}</p>`;
+        });
+    } catch {
+        document.getElementById('github-repos').innerHTML = '<p style="color:var(--gray-600);">GitHub repositories unavailable.</p>';
+    }
+}
+
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const status = document.getElementById('form-status');
+
+    if (!name || !email || !message) {
+        status.textContent = '⚠️ Please fill in all fields.';
+        status.style.color = '#8b0000';
+        return;
+    }
+    if (!email.includes('@')) {
+        status.textContent = '⚠️ Please enter a valid email address.';
+        status.style.color = '#8b0000';
+        return;
+    }
+
+    status.textContent = '✅ Thank you! Your message has been sent successfully.';
+    status.style.color = '#006400';
+    form.reset();
+    setTimeout(() => status.textContent = '', 5000);
+});
+
+const backTopBtn = document.getElementById('back-top-btn');
+window.addEventListener('scroll', () => {
+    backTopBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
+});
+backTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+displayProjects();
+fetchGitHubRepos();
+</script>
+</body>
+</html>
