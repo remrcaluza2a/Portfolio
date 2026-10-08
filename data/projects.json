@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Personal Portfolio",
+        "description": "A clean, responsive portfolio website built with HTML, CSS, and JavaScript.",
+        "technologies": "HTML, CSS, JavaScript",
+        "role": "Designed and developed the entire site"
+    },
+    {
+        "title": "Grade Calculator",
+        "description": "Calculates prelim, midterm, and final grades instantly.",
+        "technologies": "HTML, JavaScript",
+        "role": "Created the calculation logic and interface"
+    },
+    {
+        "title": "Digital Clock",
+        "description": "Displays current time and date in real-time.",
+        "technologies": "HTML, CSS, JavaScript",
+        "role": "Built the live time feature"
+    }
+]
